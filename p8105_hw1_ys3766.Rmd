@@ -5,7 +5,7 @@ date: "2024-09-21"
 output: github_document
 ---
 
-```{r setup, include = FALSE}
+```{r setup, echo = FALSE, message = FALSE}
 library(tidyverse)
 library(ggplot2)
 ```
@@ -34,7 +34,7 @@ The 'penguins' is a dataset from the 'palmerpenguins' package. It includes `r nr
 The dataset contains data for 344 penguins of 3 species, namely Adelie, Chinstrap and Gentoo. They are from 3 different islands, Biscoe, Dream and Torgersen. The mean flipper length of the penguins is 200.9mm.
 
 
-Scatterplot of flipper_length_mm vs bill_length_mm
+Scatterplot of flipper_length_mm vs bill_length_mm:
 
 ```{r}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
@@ -48,11 +48,7 @@ ggsave("scatterplot.png")
 ```
 
 ## Problem 2
-Create a data frame comprised of:
-  * a random sample of size 10 from a standard Normal distribution
-  * a logical vector indicating whether elements of the sample are greater than 0
-  * a character vector of length 10
-  * a factor vector of length 10, with 3 different factor “levels”
+Create a data frame
 ```{r}
 df_hw1 = tibble(
   norm = rnorm(10),
@@ -60,5 +56,29 @@ df_hw1 = tibble(
   vec_character = letters[1:10],
   vec_factor = factor(rep(c("one", "two", "three"), length.out = 10))
 )
+
 ```
 
+Take the mean of each variable
+```{r}
+mean_norm <- mean(pull(df_hw1, norm), na.rm = TRUE)
+mean_vec_logical <- mean(pull(df_hw1, vec_logical), na.rm = TRUE)
+mean_vec_character <- mean(pull(df_hw1, vec_character), na.rm = TRUE)
+mean_vec_factor <- mean(pull(df_hw1, vec_factor), na.rm = TRUE)
+```
+
+Attempting to take mean of the random sample and logical vector worked, while attempting to take mean of the character vector and factor vector failed. I received the following warning message:  argument is not numeric or logical: returning NA
+
+```{r}
+numeric_logical <- as.numeric(pull(df_hw1, vec_logical))
+numeric_character <- as.numeric(pull(df_hw1, vec_character))
+numeric_factor <- as.numeric(pull(df_hw1, vec_factor))
+```
+
+Logical variables were converted to numeric, with FALSE = 0 and TRUE = 1.
+
+Character variables were not converted to numeric, and NA was returned.
+
+Factor variables were converted to numeric based on the levels assigned, with one integer representing each level. Although this would allow for mean calculation, taking the mean of them is not useful unless the factor levels have meaningful numeric relationship.
+
+This explains why taking the mean of logical vector worked, while that for character and factor did not work. 
