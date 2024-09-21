@@ -20,14 +20,15 @@ Load the penguins dataset
 data("penguins", package = "palmerpenguins")
 ```
 
-Inspect the dataset
+Describe the dataset
 ```{r}
+str(penguins)
 ncol(penguins)
 nrow(penguins)
 summary(penguins)
+mean(penguins$flipper_length_mm, na.rm = TRUE)
 ```
 
-The 'penguins' is a dataset from the 'palmerpenguins' package. It includes `r nrow(penguins)` observations and `r ncol(penguins)` variables. 
+The 'penguins' is a dataset from the 'palmerpenguins' package. It includes `r nrow(penguins)` observations and `r ncol(penguins)` variables. It contains variable "species", "island", "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex" and "year". 
 
-The variables 
-The data encompasses several measurements from three different species of penguins (Adelie, Chinstrap, and Gentoo).
+The dataset contains data for 344 penguins of 3 species, namely Adelie, Chinstrap and Gentoo. They are from 3 different islands, Biscoe, Dream and Torgersen. The mean flipper length of the penguins is 200.9mm.
