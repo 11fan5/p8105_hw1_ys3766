@@ -2,22 +2,35 @@
 title: "p8105_hw1_ys3766"
 author: "Yifan Shi"
 date: "2024-09-21"
-output: html_document
+output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include = FALSE}
+library(tidyverse)
+library(ggplot2)
 ```
 
-## R Markdown
+The purpose of this file is to present my work for Homework 1
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Problem 1
 
-```{r cars}
-summary(cars)
+Load the penguins dataset
+```{r}
+data("penguins", package = "palmerpenguins")
 ```
+
+Inspect the dataset
+```{r}
+view(penguins)
+```
+
+```{r}
+
+ncol(penguins)
+nrow(penguins)
+```
+
 
 ## Including Plots
 
