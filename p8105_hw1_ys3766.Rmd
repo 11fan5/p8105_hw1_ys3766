@@ -22,22 +22,12 @@ data("penguins", package = "palmerpenguins")
 
 Inspect the dataset
 ```{r}
-view(penguins)
-```
-
-```{r}
-
 ncol(penguins)
 nrow(penguins)
+summary(penguins)
 ```
 
+The 'penguins' is a dataset from the 'palmerpenguins' package. It includes `r nrow(penguins)` observations and `r ncol(penguins)` variables. 
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The variables 
+The data encompasses several measurements from three different species of penguins (Adelie, Chinstrap, and Gentoo).
